@@ -10,6 +10,6 @@ steps:
 
 - script: |
     pushd `git rev-parse --show-toplevel`
-    docker build /apis/userprofile -t openhackut20acr.azurecr.io/devopsoh/api-user:test
+    docker build /apis/userprofile
     popd
   displayName: 'Build docker file'

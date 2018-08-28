@@ -4,17 +4,22 @@ steps:
 - task: Docker@0
   displayName: 'Build an image'
   inputs:
-    azureContainerRegistry: openhackut20acr
+    azureSubscription: $(azureSubscription)
+
+    azureContainerRegistry: '{"loginServer":"openhackut20acr.azurecr.io", "id" : "/subscriptions/$(azureSubscriptionId)/resourceGroups/openhackut20rg/providers/Microsoft.ContainerRegistry/registries/openhackut20acr"}'
 
     dockerFile: apis/userprofile/Dockerfile
 
     imageName: $(acrLoginServer)$(acrRepository):testing
 
 
+
 - task: Docker@0
   displayName: 'Push an image'
   inputs:
-    azureContainerRegistry: openhackut20acr
+    azureSubscription: $(azureSubscription)
+
+    azureContainerRegistry: '{"loginServer":"openhackut20acr.azurecr.io", "id" : "/subscriptions/$(azureSubscriptionId)/resourceGroups/openhackut20rg/providers/Microsoft.ContainerRegistry/registries/openhackut20acr"}'
 
     action: 'Push an image'
 

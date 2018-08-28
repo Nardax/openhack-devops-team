@@ -12,3 +12,9 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+- script:
+  - pushd `git rev-parse --show-toplevel`
+  - docker build --file /apis/userprofile/Dockerfile
+  - popd
+  displayName: 'Build docker file'

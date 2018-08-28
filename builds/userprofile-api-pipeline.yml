@@ -1,15 +1,36 @@
+queue:
+  name: Hosted Linux Preview
+steps:
+- task: Docker@0
+  displayName: 'Build an image'
+  inputs:
+    azureContainerRegistry: openhackut20acr
+
+    dockerFile: apis/userprofile/Dockerfile
+
+
+- task: Docker@0
+  displayName: 'Push an image'
+  inputs:
+    azureContainerRegistry: openhackut20acr
+
+    action: 'Push an image'
+
+
+
+
 # Starter pipeline
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+# steps:
+# - script: echo Hello, world!
+#   displayName: 'Run a one-line script'
 
-- script: |
-    pushd `git rev-parse --show-toplevel`
-    docker build -t $(acrLoginServer)$(acrRepository):test apis/userprofile
-    popd
-  displayName: 'Build docker file'
+# - script: |
+#     pushd `git rev-parse --show-toplevel`
+#     docker build -t $(acrLoginServer)$(acrRepository):test apis/userprofile
+#     popd
+#   displayName: 'Build docker file'

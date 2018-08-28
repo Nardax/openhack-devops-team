@@ -17,7 +17,7 @@ steps:
     echo `pwd`
     pushd `git rev-parse --show-toplevel`
     echo `pwd`
-    docker build -t openhackut20acr.azurecr.io/devopsoh/api-user:test --file /apis/userprofile/Dockerfile
+    docker build /apis/userprofile -t openhackut20acr.azurecr.io/devopsoh/api-user:test
     popd
     echo `pwd`
   displayName: 'Build docker file'

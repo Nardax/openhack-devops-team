@@ -14,11 +14,10 @@ steps:
   displayName: 'Run a multi-line script'
 
 - script: |
+    echo `pwd`
     pushd `git rev-parse --show-toplevel`
-    echo pwd
     echo `pwd`
     docker build -t openhackut20acr.azurecr.io/devopsoh/api-user:test --file /apis/userprofile/Dockerfile
     popd
-    echo pwd
     echo `pwd`
   displayName: 'Build docker file'

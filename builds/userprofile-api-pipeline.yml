@@ -1,14 +1,26 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
-
+queue:
+  name: Hosted Linux Preview
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: Docker@0
+  displayName: 'Build an image'
+  inputs:
+    azureSubscription: $(azureSubscription)
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    azureContainerRegistry: '{"loginServer":"openhackut20acr.azurecr.io", "id" : "/subscriptions/$(azureSubscriptionId)/resourceGroups/openhackut20rg/providers/Microsoft.ContainerRegistry/registries/openhackut20acr"}'
+
+    dockerFile: apis/userprofile/Dockerfile
+
+    imageName: $(acrLoginServer)$(acrRepository):testing
+
+
+
+- task: Docker@0
+  displayName: 'Push an image'
+  inputs:
+    azureSubscription: $(azureSubscription)
+
+    azureContainerRegistry: '{"loginServer":"openhackut20acr.azurecr.io", "id" : "/subscriptions/$(azureSubscriptionId)/resourceGroups/openhackut20rg/providers/Microsoft.ContainerRegistry/registries/openhackut20acr"}'
+
+    action: 'Push an image'
+
+    imageName: $(acrLoginServer)$(acrRepository):testing

@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 replicaCount: 2
 repository:
-  image: acrreplace.azurecr.io/devopsoh/imagereplace
+  image: openhackut20acr.azurecr.io/devopsoh/api-trip
   tag: latest
   pullPolicy: Always
 image:
@@ -20,7 +20,7 @@ ingress:
     kubernetes.io/ingress.class: traefik
   rules:
     endpoint:
-      host: changeme
+      host: akstraefikopenhackut20.eastus.cloudapp.azure.com
       paths:
       - path: /api/trips
         serviceName: api-trip-svc

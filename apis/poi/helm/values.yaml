@@ -4,7 +4,7 @@
 
 replicaCount: 2
 repository:
-  image: acrreplace.azurecr.io/devopsoh/imagereplace
+  image: openhackut20acr.azurecr.io/devopsoh/api-poi
   tag: latest
   pullPolicy: Always
 image:
@@ -19,7 +19,7 @@ ingress:
     kubernetes.io/ingress.class: traefik
   rules:
     endpoint:
-      host: changeme
+      host: akstraefikopenhackut20.eastus.cloudapp.azure.com
       paths:
       - path: /api/poi
         serviceName: api-poi-svc
@@ -32,7 +32,7 @@ ingress:
         servicePort: 80
       - path: /swagger/docs/poi
         serviceName: api-poi-svc
-        servicePort: 80        
+        servicePort: 80
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:

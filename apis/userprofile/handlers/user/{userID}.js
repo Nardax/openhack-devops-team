@@ -1,5 +1,10 @@
 'use strict';
 var dataProvider = require('../../data/user/{userID}.js');
+
+let appInsights = require("applicationinsights");
+appInsights.setup("d711aacb-7e60-4c2a-8a69-fb42622e6085").start();
+let client = appInsights.defaultClient;
+
 /**
  * Operations on /user/{userID}
  */
@@ -19,6 +24,9 @@ module.exports = {
         var status = 200;
         var provider = dataProvider['get']['200'];
         provider(req, res, function (err, data) {
+
+            client.trackNodeHttpRequest({request: req, response: res});
+
             if (err) {
                 next(err);
                 return;
@@ -41,6 +49,9 @@ module.exports = {
         var status = 201;
         var provider = dataProvider['post']['201'];
         provider(req, res, function (err, data) {
+
+            client.trackNodeHttpRequest({request: req, response: res});
+
             if (err) {
                 next(err);
                 return;
@@ -63,6 +74,9 @@ module.exports = {
         var status = 200;
         var provider = dataProvider['patch']['200'];
         provider(req, res, function (err, data) {
+
+            client.trackNodeHttpRequest({request: req, response: res});
+
             if (err) {
                 next(err);
                 return;
@@ -85,6 +99,9 @@ module.exports = {
         var status = 204;
         var provider = dataProvider['delete']['204'];
         provider(req, res, function (err, data) {
+
+            client.trackNodeHttpRequest({request: req, response: res});
+
             if (err) {
                 next(err);
                 return;
